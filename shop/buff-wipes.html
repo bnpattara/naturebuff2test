@@ -1,0 +1,581 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Buff Wipes - NatureBuff</title>
+  <meta name="description" content="Biodegradable bamboo wipes for on-the-go freshness. Perfect for hiking, camping, travel, or everyday use.">
+  <link rel="stylesheet" href="../css/styles.css">
+  <link rel="icon" href="../images/favicon.ico" type="image/x-icon">
+</head>
+<body>
+  <div class="site-container">
+    <!-- Header (will be loaded via JavaScript) -->
+    <header id="site-header"></header>
+
+    <!-- Mobile Menu (will be loaded via JavaScript) -->
+    <div id="mobile-menu"></div>
+
+    <main>
+      <div class="container">
+        <!-- Breadcrumb -->
+        <div class="breadcrumb">
+          <a href="../index.html" class="breadcrumb-link">Home</a>
+          <svg class="icon" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <polyline points="9 18 15 12 9 6" stroke="currentColor" stroke-width="2"/>
+          </svg>
+          <a href="../shop.html" class="breadcrumb-link">Shop</a>
+          <svg class="icon" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <polyline points="9 18 15 12 9 6" stroke="currentColor" stroke-width="2"/>
+          </svg>
+          <span class="breadcrumb-current">Buff Wipes</span>
+        </div>
+
+        <!-- Product Overview -->
+        <div class="product-detail-layout">
+          <!-- Product Gallery -->
+          <div class="product-gallery">
+            <div class="main-image-container">
+              <img src="../images/placeholder.svg" alt="Buff Wipes product package front view" class="main-product-image" id="main-product-image">
+              <button class="gallery-zoom-button" aria-label="Zoom image">
+                <svg class="icon" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                  <polyline points="15 3 21 3 21 9" stroke="currentColor" stroke-width="2"/>
+                  <polyline points="9 21 3 21 3 15" stroke="currentColor" stroke-width="2"/>
+                  <line x1="21" y1="3" x2="14" y2="10" stroke="currentColor" stroke-width="2"/>
+                  <line x1="3" y1="21" x2="10" y2="14" stroke="currentColor" stroke-width="2"/>
+                </svg>
+              </button>
+              <button class="gallery-prev-button" aria-label="Previous image">
+                <svg class="icon" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                  <polyline points="15 18 9 12 15 6" stroke="currentColor" stroke-width="2"/>
+                </svg>
+              </button>
+              <button class="gallery-next-button" aria-label="Next image">
+                <svg class="icon" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                  <polyline points="9 18 15 12 9 6" stroke="currentColor" stroke-width="2"/>
+                </svg>
+              </button>
+            </div>
+            <div class="thumbnail-container">
+              <button class="thumbnail-button active" data-image="../images/placeholder.svg" data-alt="Buff Wipes product package front view">
+                <img src="../images/placeholder.svg" alt="Thumbnail 1" class="thumbnail-image">
+              </button>
+              <button class="thumbnail-button" data-image="../images/placeholder.svg" data-alt="Buff Wipes product package back view with ingredients">
+                <img src="../images/placeholder.svg" alt="Thumbnail 2" class="thumbnail-image">
+              </button>
+              <button class="thumbnail-button" data-image="../images/placeholder.svg" data-alt="Buff Wipes being used outdoors">
+                <img src="../images/placeholder.svg" alt="Thumbnail 3" class="thumbnail-image">
+              </button>
+              <button class="thumbnail-button" data-image="../images/placeholder.svg" data-alt="Buff Wipes biodegradation demonstration">
+                <img src="../images/placeholder.svg" alt="Thumbnail 4" class="thumbnail-image">
+              </button>
+            </div>
+          </div>
+
+          <!-- Product Details -->
+          <div class="product-details">
+            <h1 class="product-detail-title">Buff Wipes</h1>
+            <div class="product-rating">
+              <div class="star-rating">
+                <span class="star filled"></span>
+                <span class="star filled"></span>
+                <span class="star filled"></span>
+                <span class="star filled"></span>
+                <span class="star filled"></span>
+              </div>
+              <span class="review-count">(124 reviews)</span>
+            </div>
+
+            <div class="product-pricing">
+              <p class="product-price">$12.99</p>
+              <p class="subscription-option">or subscribe and save 15% ($11.04 / pack)</p>
+            </div>
+
+            <p class="product-description">
+              Biodegradable bamboo wipes for on-the-go freshness. Perfect for hiking, camping, travel, or everyday use.
+              Our eco-friendly wipes keep you clean without harming the planet.
+            </p>
+
+            <!-- Scent Selection -->
+            <div class="product-option">
+              <h3 class="option-title">Scent</h3>
+              <div class="option-buttons">
+                <button class="option-button selected">Unscented</button>
+                <button class="option-button">Lavender</button>
+                <button class="option-button">Eucalyptus</button>
+              </div>
+            </div>
+
+            <!-- Pack Size -->
+            <div class="product-option">
+              <h3 class="option-title">Pack Size</h3>
+              <div class="option-buttons">
+                <button class="option-button">10-pack</button>
+                <button class="option-button selected">30-pack</button>
+                <button class="option-button">60-pack</button>
+              </div>
+            </div>
+
+            <!-- Quantity -->
+            <div class="product-option">
+              <h3 class="option-title">Quantity</h3>
+              <div class="quantity-selector">
+                <button class="quantity-button decrease">
+                  <svg class="icon" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <line x1="5" y1="12" x2="19" y2="12" stroke="currentColor" stroke-width="2"/>
+                  </svg>
+                </button>
+                <input type="number" value="1" min="1" class="quantity-input">
+                <button class="quantity-button increase">
+                  <svg class="icon" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <line x1="12" y1="5" x2="12" y2="19" stroke="currentColor" stroke-width="2"/>
+                    <line x1="5" y1="12" x2="19" y2="12" stroke="currentColor" stroke-width="2"/>
+                  </svg>
+                </button>
+              </div>
+            </div>
+
+            <!-- Purchase Options -->
+            <div class="purchase-options">
+              <button class="button primary-button full-width">Add to Cart</button>
+              <button class="button outline-button full-width">Subscribe & Save 15%</button>
+            </div>
+
+            <!-- Key Features -->
+            <div class="product-features">
+              <div class="feature-item">
+                <svg class="icon" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                  <path d="M12 2L8 6H16L12 2Z" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                  <path d="M12 22V16" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                  <path d="M12 13V8" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                  <path d="M12 16C14.2091 16 16 14.2091 16 12C16 9.79086 14.2091 8 12 8C9.79086 8 8 9.79086 8 12C8 14.2091 9.79086 16 12 16Z" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                </svg>
+                <p>100% biodegradable bamboo fiber</p>
+              </div>
+              <div class="feature-item">
+                <svg class="icon" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                  <path d="M21 16V8.00002C20.9996 7.6493 20.9071 7.30483 20.7315 7.00119C20.556 6.69754 20.3037 6.44539 20 6.27002L13 2.27002C12.696 2.09449 12.3511 2.00208 12 2.00208C11.6489 2.00208 11.304 2.09449 11 2.27002L4 6.27002C3.69626 6.44539 3.44398 6.69754 3.26846 7.00119C3.09294 7.30483 3.00036 7.6493 3 8.00002V16C3.00036 16.3508 3.09294 16.6952 3.26846 16.9989C3.44398 17.3025 3.69626 17.5547 4 17.73L11 21.73C11.304 21.9056 11.6489 21.998 12 21.998C12.3511 21.998 12.696 21.9056 13 21.73L20 17.73C20.3037 17.5547 20.556 17.3025 20.7315 16.9989C20.9071 16.6952 20.9996 16.3508 21 16Z" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                  <path d="M3.27002 6.96002L12 12L20.73 6.96002" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                  <path d="M12 22.08V12" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                </svg>
+                <p>Breaks down naturally in 4-6 weeks</p>
+              </div>
+              <div class="feature-item">
+                <svg class="icon" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                  <path d="M20.2 5.2L5.2 20.2C4.8 20.6 4.2 20.8 3.6 20.6C3 20.4 2.6 20 2.4 19.4C2.2 18.8 2.4 18.2 2.8 17.8L17.8 2.8C18.2 2.4 18.8 2.2 19.4 2.4C20 2.6 20.4 3 20.6 3.6C20.8 4.2 20.6 4.8 20.2 5.2Z" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                  <path d="M18 2L22 6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                  <path d="M2 18L6 22" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                </svg>
+                <p>Free from harsh chemicals, alcohol, and synthetic fragrances</p>
+              </div>
+              <div class="feature-item">
+                <svg class="icon" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                  <rect x="1" y="3" width="15" height="13" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                  <polygon points="16 8 20 8 23 11 23 16 16 16 16 8" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                  <circle cx="5.5" cy="18.5" r="2.5" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                  <circle cx="18.5" cy="18.5" r="2.5" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                </svg>
+                <p>Free shipping on orders over $35</p>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Product Details Tabs -->
+        <div class="product-tabs">
+          <div class="tabs-header">
+            <button class="tab-button active" data-tab="description">Description</button>
+            <button class="tab-button" data-tab="ingredients">Ingredients</button>
+            <button class="tab-button" data-tab="how-to-use">How to Use</button>
+            <button class="tab-button" data-tab="reviews">Reviews</button>
+          </div>
+
+          <div class="tab-content active" id="description-tab">
+            <div class="two-column-layout">
+              <div class="column">
+                <h2 class="tab-title">Stay Fresh Anywhere</h2>
+                <p>
+                  Buff Wipes are designed for adventurers, travelers, and anyone who wants to stay fresh on the go without
+                  compromising on sustainability. Our biodegradable bamboo wipes provide effective cleansing while being
+                  gentle on both your skin and the environment.
+                </p>
+                <p>
+                  Unlike conventional wipes that contain plastic fibers and can take hundreds of years to break down, Buff
+                  Wipes are made from 100% biodegradable bamboo fiber that naturally decomposes in just 4-6 weeks when
+                  properly disposed of.
+                </p>
+                <p>
+                  Each wipe is infused with gentle, plant-based cleansers and essential oils (in scented varieties) to
+                  leave your skin feeling clean and refreshed without harsh chemicals or synthetic fragrances.
+                </p>
+              </div>
+              <div class="column">
+                <h3 class="tab-subtitle">Features & Benefits</h3>
+                <ul class="feature-list">
+                  <li class="feature-list-item">
+                    <svg class="icon" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                      <polyline points="20 6 9 17 4 12" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                    </svg>
+                    <span>Biodegradable bamboo fiber breaks down in 4-6 weeks</span>
+                  </li>
+                  <li class="feature-list-item">
+                    <svg class="icon" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                      <polyline points="20 6 9 17 4 12" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                    </svg>
+                    <span>Plastic-free, compostable packaging</span>
+                  </li>
+                  <li class="feature-list-item">
+                    <svg class="icon" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                      <polyline points="20 6 9 17 4 12" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                    </svg>
+                    <span>pH balanced and suitable for all skin types</span>
+                  </li>
+                  <li class="feature-list-item">
+                    <svg class="icon" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                      <polyline points="20 6 9 17 4 12" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                    </svg>
+                    <span>Free from alcohol, parabens, and synthetic fragrances</span>
+                  </li>
+                  <li class="feature-list-item">
+                    <svg class="icon" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                      <polyline points="20 6 9 17 4 12" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                    </svg>
+                    <span>Available in Unscented, Lavender, and Eucalyptus</span>
+                  </li>
+                  <li class="feature-list-item">
+                    <svg class="icon" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                      <polyline points="20 6 9 17 4 12" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                    </svg>
+                    <span>Compact, resealable packaging perfect for travel</span>
+                  </li>
+                  <li class="feature-list-item">
+                    <svg class="icon" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                      <polyline points="20 6 9 17 4 12" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                    </svg>
+                    <span>Cruelty-free and never tested on animals</span>
+                  </li>
+                  <li class="feature-list-item">
+                    <svg class="icon" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                      <polyline points="20 6 9 17 4 12" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                    </svg>
+                    <span>1% of sales donated to environmental nonprofits</span>
+                  </li>
+                </ul>
+              </div>
+            </div>
+          </div>
+
+          <div class="tab-content" id="ingredients-tab">
+            <div class="single-column-layout">
+              <h2 class="tab-title">What's Inside</h2>
+              <p>
+                We believe in transparency about what goes into our products. Buff Wipes are made with carefully selected
+                ingredients that are safe for you and the environment.
+              </p>
+
+              <h3 class="tab-subtitle">Base Ingredients (All Varieties)</h3>
+              <ul class="ingredient-list">
+                <li>100% Biodegradable Bamboo Fiber</li>
+                <li>Purified Water</li>
+                <li>Aloe Vera Leaf Juice</li>
+                <li>Vegetable Glycerin</li>
+                <li>Decyl Glucoside (Plant-Based Cleanser)</li>
+                <li>Sodium Benzoate (Natural Preservative)</li>
+                <li>Potassium Sorbate (Natural Preservative)</li>
+                <li>Citric Acid (pH Balancer)</li>
+              </ul>
+
+              <h3 class="tab-subtitle">Additional Ingredients by Variety</h3>
+              <div class="ingredient-varieties">
+                <div class="ingredient-variety">
+                  <h4 class="variety-name">Unscented</h4>
+                  <p>No additional ingredients</p>
+                </div>
+                <div class="ingredient-variety">
+                  <h4 class="variety-name">Lavender</h4>
+                  <p>Lavandula Angustifolia (Lavender) Oil</p>
+                </div>
+                <div class="ingredient-variety">
+                  <h4 class="variety-name">Eucalyptus</h4>
+                  <p>Eucalyptus Globulus Leaf Oil</p>
+                </div>
+              </div>
+
+              <h3 class="tab-subtitle">What's NOT Inside</h3>
+              <ul class="ingredient-list">
+                <li>Alcohol</li>
+                <li>Parabens</li>
+                <li>Phthalates</li>
+                <li>Synthetic Fragrances</li>
+                <li>Sulfates</li>
+                <li>Artificial Colors</li>
+                <li>Plastic Fibers</li>
+                <li>Animal-Derived Ingredients</li>
+              </ul>
+            </div>
+          </div>
+
+          <div class="tab-content" id="how-to-use-tab">
+            <div class="single-column-layout">
+              <h2 class="tab-title">How to Use Buff Wipes</h2>
+              <p>
+                Buff Wipes are designed to be simple and convenient to use wherever your adventures take you.
+              </p>
+
+              <div class="usage-steps">
+                <div class="usage-step">
+                  <div class="step-number">1</div>
+                  <h3 class="step-title">Open</h3>
+                  <p>Peel back the resealable label and remove a single wipe.</p>
+                </div>
+                <div class="usage-step">
+                  <div class="step-number">2</div>
+                  <h3 class="step-title">Use</h3>
+                  <p>Gently wipe skin to cleanse and refresh. No rinsing needed.</p>
+                </div>
+                <div class="usage-step">
+                  <div class="step-number">3</div>
+                  <h3 class="step-title">Dispose</h3>
+                  <p>Compost or dispose with regular waste. Never flush.</p>
+                </div>
+              </div>
+
+              <h3 class="tab-subtitle">Tips for Best Use</h3>
+              <ul class="usage-tips">
+                <li>Always reseal the package after use to prevent wipes from drying out.</li>
+                <li>For face use, test on a small area first, especially if you have sensitive skin.</li>
+                <li>While our wipes are biodegradable, please never flush them as they can still cause plumbing issues.</li>
+                <li>For optimal environmental impact, dispose of used wipes in a compost bin when possible.</li>
+                <li>Store in a cool, dry place away from direct sunlight.</li>
+              </ul>
+
+              <h3 class="tab-subtitle">Ideal Uses</h3>
+              <ul class="usage-tips">
+                <li>Freshening up during or after outdoor activities</li>
+                <li>Cleaning hands and face while traveling</li>
+                <li>Quick cleansing when shower facilities aren't available</li>
+                <li>Removing dirt, sweat, and grime after workouts</li>
+                <li>General hygiene maintenance on camping or backpacking trips</li>
+              </ul>
+            </div>
+          </div>
+
+          <div class="tab-content" id="reviews-tab">
+            <div class="reviews-container">
+              <div class="reviews-header">
+                <div>
+                  <h2 class="tab-title">Customer Reviews</h2>
+                  <div class="reviews-summary">
+                    <div class="star-rating">
+                      <span class="star filled"></span>
+                      <span class="star filled"></span>
+                      <span class="star filled"></span>
+                      <span class="star filled"></span>
+                      <span class="star filled"></span>
+                    </div>
+                    <span>Based on 124 reviews</span>
+                  </div>
+                </div>
+                <button class="button accent-button">Write a Review</button>
+              </div>
+
+              <div class="reviews-list">
+                <!-- Review 1 -->
+                <div class="review-item">
+                  <div class="review-header">
+                    <div class="review-rating">
+                      <div class="star-rating small">
+                        <span class="star filled"></span>
+                        <span class="star filled"></span>
+                        <span class="star filled"></span>
+                        <span class="star filled"></span>
+                        <span class="star filled"></span>
+                      </div>
+                      <h4 class="review-title">Perfect for backpacking trips</h4>
+                    </div>
+                    <div class="review-meta">
+                      <span>Sarah K.</span>
+                      <span class="meta-separator">•</span>
+                      <span>Verified Buyer</span>
+                      <span class="meta-separator">•</span>
+                      <span>March 15, 2023</span>
+                    </div>
+                  </div>
+                  <p class="review-content">
+                    I've been using these wipes on multi-day backpacking trips and they're a game-changer. They're
+                    effective at cleaning off trail dirt and sweat, and I love that they break down naturally if I need to
+                    pack them out. The unscented version is perfect for sensitive skin and doesn't attract bugs.
+                  </p>
+                </div>
+
+                <!-- Review 2 -->
+                <div class="review-item">
+                  <div class="review-header">
+                    <div class="review-rating">
+                      <div class="star-rating small">
+                        <span class="star filled"></span>
+                        <span class="star filled"></span>
+                        <span class="star filled"></span>
+                        <span class="star filled"></span>
+                        <span class="star filled"></span>
+                      </div>
+                      <h4 class="review-title">Great for travel</h4>
+                    </div>
+                    <div class="review-meta">
+                      <span>Michael T.</span>
+                      <span class="meta-separator">•</span>
+                      <span>Verified Buyer</span>
+                      <span class="meta-separator">•</span>
+                      <span>February 28, 2023</span>
+                    </div>
+                  </div>
+                  <p class="review-content">
+                    I keep these in my carry-on for long flights. The eucalyptus scent is refreshing without being
+                    overpowering, and they're much more effective than the tiny airline wipes. Love that they're
+                    eco-friendly too!
+                  </p>
+                </div>
+
+                <!-- Review 3 -->
+                <div class="review-item">
+                  <div class="review-header">
+                    <div class="review-rating">
+                      <div class="star-rating small">
+                        <span class="star filled"></span>
+                        <span class="star filled"></span>
+                        <span class="star filled"></span>
+                        <span class="star filled"></span>
+                        <span class="star"></span>
+                      </div>
+                      <h4 class="review-title">Good product, packaging could be improved</h4>
+                    </div>
+                    <div class="review-meta">
+                      <span>Jamie L.</span>
+                      <span class="meta-separator">•</span>
+                      <span>Verified Buyer</span>
+                      <span class="meta-separator">•</span>
+                      <span>February 10, 2023</span>
+                    </div>
+                  </div>
+                  <p class="review-content">
+                    The wipes themselves are excellent - soft, effective, and I love the lavender scent. My only complaint
+                    is that the resealable tab lost its stickiness after about a week of use, which made the remaining
+                    wipes dry out faster. Would love to see a better closure system in the future.
+                  </p>
+                </div>
+
+                <button class="button outline-button full-width">Load More Reviews</button>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Related Products -->
+        <section class="related-products-section">
+          <div class="section-header-with-controls">
+            <h2 class="section-title">You May Also Like</h2>
+            <div class="carousel-controls desktop-only">
+              <button class="carousel-control-button prev" aria-label="Previous products">
+                <svg class="icon" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                  <line x1="19" y1="12" x2="5" y2="12" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                  <polyline points="12 19 5 12 12 5" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                </svg>
+              </button>
+              <button class="carousel-control-button next" aria-label="Next products">
+                <svg class="icon" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                  <line x1="5" y1="12" x2="19" y2="12" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="roun  x2="19" y2="12" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                  <polyline points="9 5 19 12 9 19" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                </svg>
+              </button>
+            </div>
+          </div>
+
+          <div class="related-products-grid">
+            <!-- Related Product 1 -->
+            <div class="shop-product-card">
+              <div class="product-image-container">
+                <img src="../images/placeholder.svg" alt="Buff Wipes Travel Pack" class="product-image">
+              </div>
+              <div class="product-content">
+                <h3 class="product-title">Buff Wipes - Travel Pack</h3>
+                <p class="product-description">10-pack for on-the-go</p>
+                <div class="product-price-container">
+                  <span class="product-price">$8.99</span>
+                  <button class="button small-button">Add to Cart</button>
+                </div>
+              </div>
+            </div>
+
+            <!-- Related Product 2 -->
+            <div class="shop-product-card">
+              <div class="product-image-container">
+                <img src="../images/placeholder.svg" alt="Eucalyptus Soap Bar" class="product-image">
+              </div>
+              <div class="product-content">
+                <h3 class="product-title">Eucalyptus Soap Bar</h3>
+                <p class="product-description">Refreshing natural soap</p>
+                <div class="product-price-container">
+                  <span class="product-price">$9.99</span>
+                  <button class="button small-button">Add to Cart</button>
+                </div>
+              </div>
+            </div>
+
+            <!-- Related Product 3 -->
+            <div class="shop-product-card">
+              <div class="product-image-container">
+                <img src="../images/placeholder.svg" alt="Bamboo Travel Case" class="product-image">
+              </div>
+              <div class="product-content">
+                <h3 class="product-title">Bamboo Travel Case</h3>
+                <p class="product-description">For soap bars and wipes</p>
+                <div class="product-price-container">
+                  <span class="product-price">$14.99</span>
+                  <button class="button small-button">Add to Cart</button>
+                </div>
+              </div>
+            </div>
+
+            <!-- Related Product 4 -->
+            <div class="shop-product-card">
+              <div class="product-image-container">
+                <img src="../images/placeholder.svg" alt="Buff Wipes Family Pack" class="product-image">
+              </div>
+              <div class="product-content">
+                <h3 class="product-title">Buff Wipes - Family Pack</h3>
+                <p class="product-description">60-pack for extended use</p>
+                <div class="product-price-container">
+                  <span class="product-price">$24.99</span>
+                  <button class="button small-button">Add to Cart</button>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+      </div>
+    </main>
+
+    <!-- Footer (will be loaded via JavaScript) -->
+    <footer id="site-footer"></footer>
+  </div>
+
+  <!-- Image Zoom Modal -->
+  <div class="modal" id="image-zoom-modal">
+    <div class="modal-content">
+      <button class="modal-close" aria-label="Close modal">
+        <svg class="icon" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <line x1="18" y1="6" x2="6" y2="18" stroke="currentColor" stroke-width="2"/>
+          <line x1="6" y1="6" x2="18" y2="18" stroke="currentColor" stroke-width="2"/>
+        </svg>
+      </button>
+      <div class="zoomed-image-container">
+        <img src="../images/placeholder.svg" alt="Zoomed product image" id="zoomed-image">
+      </div>
+    </div>
+  </div>
+
+  <script src="../js/main.js"></script>
+  <script src="../js/product.js"></script>
+</body>
+</html>
+

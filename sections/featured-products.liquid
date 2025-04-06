@@ -1,0 +1,186 @@
+<section class="py-16 bg-muted/30">
+  <div class="container px-4 md:px-6">
+    <div class="text-center mb-12">
+      <h2 class="heading-lg text-naturebuff-green mb-4">{{ section.settings.title }}</h2>
+      <p class="text-muted-foreground max-w-2xl mx-auto">
+        {{ section.settings.description }}
+      </p>
+    </div>
+    
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+      {% for block in section.blocks %}
+        {% if block.type == 'featured_collection' %}
+          {% assign collection = collections[block.settings.collection] %}
+          {% if collection.products.first %}
+            {% assign product = collection.products.first %}
+            <div class="bg-background border-2 border-naturebuff-green/10 overflow-hidden rounded-lg">
+              <div class="aspect-square relative">
+                {% if product.featured_image %}
+                  <img 
+                    src="{{ product.featured_image | img_url: '600x600', crop: 'center' }}" 
+                    alt="{{ product.featured_image.alt | escape }}"
+                    class="object-cover w-full h-full"
+                    loading="lazy"
+                  >
+                {% else %}
+                  <div class="w-full h-full bg-muted flex items-center justify-center">
+                    <span class="text-muted-foreground">No image</span>
+                  </div>
+                {% endif %}
+              </div>
+              <div class="p-6">
+                <h3 class="heading-sm text-naturebuff-green mb-2">{{ block.settings.title }}</h3>
+                <p class="text-muted-foreground mb-4">
+                  {{ block.settings.description }}
+                </p>
+                <a href="{{ collection.url }}" class="w-full bg-naturebuff-green hover:bg-naturebuff-green/90 text-white px-4 py-2 rounded-md inline-block text-center">
+                  {{ block.settings.button_text }}
+                </a>
+              </div>
+            </div>
+          {% else %}
+            <div class="bg-background border-2 border-naturebuff-green/10 overflow-hidden rounded-lg">
+              <div class="aspect-square relative bg-muted flex items-center justify-center">
+                <span class="text-muted-foreground">No products in collection</span>
+              </div>
+              <div class="p-6">
+                <h3 class="heading-sm text-naturebuff-green mb-2">{{ block.settings.title }}</h3>
+                <p class="text-muted-foreground mb-4">
+                  {{ block.settings.description }}
+                </p>
+                <a href="{{ collection.url }}" class="w-full bg-naturebuff-green hover:bg-naturebuff-green/90 text-white px-4 py-2 rounded-md inline-block text-center">
+                  {{ block.settings.button_text }}
+                </a>
+              </div>
+            </div>
+          {% endif %}
+        {% endif %}
+        
+        {% if block.type == 'coming_soon' %}
+          <div class="bg-background border-2 border-naturebuff-green/10 overflow-hidden rounded-lg md:col-span-2 lg:col-span-1">
+            <div class="aspect-square relative">
+              {% if block.settings.image %}
+                <img 
+                  src="{{ block.settings.image | img_url: '600x600', crop: 'center' }}" 
+                  alt="{{ block.settings.image.alt | escape }}"
+                  class="object-cover w-full h-full"
+                  loading="lazy"
+                >
+              {% else %}
+                <div class="w-full h-full bg-muted flex items-center justify-center">
+                  <span class="text-muted-foreground">Coming Soon</span>
+                </div>
+              {% endif %}
+            </div>
+            <div class="p-6">
+              <h3 class="heading-sm text-naturebuff-green mb-2">{{ block.settings.title }}</h3>
+              <p class="text-muted-foreground mb-4">
+                {{ block.settings.description }}
+              </p>
+              <button class="w-full border border-naturebuff-green text-naturebuff-green hover:bg-naturebuff-green/10 px-4 py-2 rounded-md">
+                {{ block.settings.button_text }}
+              </button>
+            </div>
+          </div>
+        {% endif %}
+      {% endfor %}
+    </div>
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "Featured Products",
+  "settings": [
+    {
+      "type": "text",
+      "id": "title",
+      "label": "Title",
+      "default": "Our Products"
+    },
+    {
+      "type": "textarea",
+      "id": "description",
+      "label": "Description",
+      "default": "Discover our range of sustainable hygiene products designed for adventurers, travelers, and eco-conscious individuals."
+    }
+  ],
+  "blocks": [
+    {
+      "type": "featured_collection",
+      "name": "Featured Collection",
+      "settings": [
+        {
+          "type": "collection",
+          "id": "collection",
+          "label": "Collection"
+        },
+        {
+          "type": "text",
+          "id": "title",
+          "label": "Title",
+          "default": "Collection Title"
+        },
+        {
+          "type": "textarea",
+          "id": "description",
+          "label": "Description",
+          "default": "Description of this collection."
+        },
+        {
+          "type": "text",
+          "id": "button_text",
+          "label": "Button Text",
+          "default": "Learn More"
+        }
+      ]
+    },
+    {
+      "type": "coming_soon",
+      "name": "Coming Soon",
+      "settings": [
+        {
+          "type": "image_picker",
+          "id": "image",
+          "label": "Image"
+        },
+        {
+          "type": "text",
+          "id": "title",
+          "label": "Title",
+          "default": "Coming Soon"
+        },
+        {
+          "type": "textarea",
+          "id": "description",
+          "label": "Description",
+          "default": "New sustainable products in development. Stay tuned for eco-friendly additions to our collection."
+        },
+        {
+          "type": "text",
+          "id": "button_text",
+          "label": "Button Text",
+          "default": "Notify Me"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Featured Products",
+      "blocks": [
+        {
+          "type": "featured_collection"
+        },
+        {
+          "type": "featured_collection"
+        },
+        {
+          "type": "coming_soon"
+        }
+      ]
+    }
+  ]
+}
+{% endschema %}
+

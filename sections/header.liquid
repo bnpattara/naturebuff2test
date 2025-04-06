@@ -1,0 +1,103 @@
+<header class="sticky top-0 z-40 border-b bg-background py-5 md:py-6">
+  <div class="container flex items-center justify-between">
+    <nav class="hidden md:flex items-center gap-8">
+      {% for link in linklists.main-menu.links %}
+        <a href="{{ link.url }}" class="text-sm font-medium hover:text-naturebuff-green hover:underline underline-offset-4">
+          {{ link.title }}
+        </a>
+      {% endfor %}
+    </nav>
+
+    <div class="flex items-center mx-auto md:absolute md:left-1/2 md:transform md:-translate-x-1/2 px-6 py-3">
+      <a href="/" class="flex items-center">
+        {% if settings.logo %}
+          <img 
+            src="{{ settings.logo | img_url: 'medium' }}" 
+            alt="{{ shop.name }}"
+            class="h-14 md:h-16 w-auto"
+            loading="eager"
+          >
+        {% else %}
+          <span class="text-2xl font-bold">{{ shop.name }}</span>
+        {% endif %}
+      </a>
+    </div>
+
+    <div class="flex items-center gap-4">
+      <nav class="hidden md:flex items-center gap-8 mr-4">
+        {% for link in linklists.utility-menu.links %}
+          <a href="{{ link.url }}" class="text-sm font-medium hover:text-naturebuff-green hover:underline underline-offset-4">
+            {{ link.title }}
+          </a>
+        {% endfor %}
+      </nav>
+      
+      <a href="/cart" class="rounded-full border border-naturebuff-green text-naturebuff-green hover:bg-naturebuff-green/10 p-2 flex items-center justify-center">
+        {% render 'icon-cart' %}
+        <span class="sr-only">Shopping Cart</span>
+        <span class="ml-1 text-xs">{{ cart.item_count }}</span>
+      </a>
+      
+      <a href="/collections/all" class="hidden md:flex bg-naturebuff-orange hover:bg-naturebuff-orange/90 text-naturebuff-green px-4 py-2 rounded-md">
+        Shop Now
+      </a>
+      
+      <button class="md:hidden" id="mobile-menu-toggle">
+        {% render 'icon-menu' %}
+        <span class="sr-only">Toggle menu</span>
+      </button>
+    </div>
+  </div>
+  
+  <div id="mobile-menu" class="hidden">
+    <div class="px-7 pt-4 pb-6 bg-background border-t">
+      <div class="flex items-center justify-between mb-6">
+        {% if settings.logo %}
+          <img 
+            src="{{ settings.logo | img_url: 'small' }}" 
+            alt="{{ shop.name }}"
+            class="h-12 w-auto"
+          >
+        {% else %}
+          <span class="text-xl font-bold">{{ shop.name }}</span>
+        {% endif %}
+        
+        <button id="mobile-menu-close">
+          {% render 'icon-close' %}
+          <span class="sr-only">Close</span>
+        </button>
+      </div>
+      
+      <div class="flex flex-col gap-5">
+        {% for link in linklists.main-menu.links %}
+          <a href="{{ link.url }}" class="text-lg font-medium">
+            {{ link.title }}
+          </a>
+        {% endfor %}
+        
+        {% for link in linklists.utility-menu.links %}
+          <a href="{{ link.url }}" class="text-lg font-medium">
+            {{ link.title }}
+          </a>
+        {% endfor %}
+      </div>
+    </div>
+  </div>
+</header>
+
+<script>
+  document.addEventListener('DOMContentLoaded', function() {
+    const mobileMenuToggle = document.getElementById('mobile-menu-toggle');
+    const mobileMenuClose = document.getElementById('mobile-menu-close');
+    const mobileMenu = document.getElementById('mobile-menu');
+    
+    mobileMenuToggle.addEventListener('click', function() {
+      mobileMenu.classList.toggle('hidden');
+    });
+    
+    mobileMenuClose.addEventListener('click', function() {
+      mobileMenu.classList.add('hidden');
+    });
+  });
+</script>
+

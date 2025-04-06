@@ -1,0 +1,127 @@
+<footer class="border-t bg-muted/30 py-8">
+  <div class="container px-4 md:px-6">
+    <div class="flex flex-col items-center mb-8">
+      <div class="mb-4">
+        {% if settings.footer_logo %}
+          <img 
+            src="{{ settings.footer_logo | img_url: 'medium' }}" 
+            alt="{{ shop.name }}"
+            class="h-16 w-auto"
+          >
+        {% else %}
+          <img 
+            src="{{ settings.logo | img_url: 'medium' }}" 
+            alt="{{ shop.name }}"
+            class="h-16 w-auto"
+          >
+        {% endif %}
+      </div>
+      <p class="text-sm text-muted-foreground max-w-md text-center">
+        {{ settings.footer_text }}
+      </p>
+    </div>
+    
+    <div class="flex flex-wrap justify-center gap-8 md:gap-16">
+      {% for block in section.blocks %}
+        {% case block.type %}
+          {% when 'link_list' %}
+            <div class="w-40">
+              <h3 class="font-heading font-bold mb-4 text-naturebuff-green">{{ block.settings.title }}</h3>
+              {% assign footer_linklist = block.settings.menu %}
+              {% if linklists[footer_linklist].links.size > 0 %}
+                <ul class="space-y-2">
+                  {% for link in linklists[footer_linklist].links %}
+                    <li>
+                      <a href="{{ link.url }}" class="text-sm text-muted-foreground hover:text-naturebuff-green">
+                        {{ link.title }}
+                      </a>
+                    </li>
+                  {% endfor %}
+                </ul>
+              {% endif %}
+            </div>
+        {% endcase %}
+      {% endfor %}
+    </div>
+    
+    <div class="mt-8 pt-8 border-t text-center text-sm text-muted-foreground">
+      <p>&copy; {{ 'now' | date: "%Y" }} {{ shop.name }}. {{ settings.copyright_text }}</p>
+    </div>
+  </div>
+</footer>
+
+{% schema %}
+{
+  "name": "Footer",
+  "settings": [
+    {
+      "type": "text",
+      "id": "footer_text",
+      "label": "Footer Text",
+      "default": "Sustainable hygiene products for the wild at heart. Eco-friendly, biodegradable, and perfect for your adventures."
+    },
+    {
+      "type": "text",
+      "id": "copyright_text",
+      "label": "Copyright Text",
+      "default": "All rights reserved."
+    }
+  ],
+  "blocks": [
+    {
+      "type": "link_list",
+      "name": "Menu",
+      "settings": [
+        {
+          "type": "text",
+          "id": "title",
+          "label": "Heading",
+          "default": "Quick links"
+        },
+        {
+          "type": "link_list",
+          "id": "menu",
+          "label": "Menu",
+          "default": "footer"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Footer",
+      "blocks": [
+        {
+          "type": "link_list",
+          "settings": {
+            "title": "Shop",
+            "menu": "footer-shop"
+          }
+        },
+        {
+          "type": "link_list",
+          "settings": {
+            "title": "About",
+            "menu": "footer-about"
+          }
+        },
+        {
+          "type": "link_list",
+          "settings": {
+            "title": "Resources",
+            "menu": "footer-resources"
+          }
+        },
+        {
+          "type": "link_list",
+          "settings": {
+            "title": "Connect",
+            "menu": "footer-connect"
+          }
+        }
+      ]
+    }
+  ]
+}
+{% endschema %}
+

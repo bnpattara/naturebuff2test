@@ -1,0 +1,335 @@
+<div class="container px-4 py-8 md:px-6 md:py-12">
+  <!-- Breadcrumb -->
+  <div class="flex items-center text-sm text-muted-foreground mb-8">
+    <a href="/" class="hover:text-naturebuff-green">Home</a>
+    {% render 'icon-chevron-right', class: 'h-4 w-4 mx-2' %}
+    <a href="/collections/all" class="hover:text-naturebuff-green">Shop</a>
+    {% render 'icon-chevron-right', class: 'h-4 w-4 mx-2' %}
+    <span class="text-foreground">{{ product.title }}</span>
+  </div>
+
+  <!-- Product Overview -->
+  <div class="grid grid-cols-1 md:grid-cols-2 gap-12 mb-16">
+    <!-- Product Gallery -->
+    <div class="relative">
+      {% section 'product-gallery' %}
+    </div>
+
+    <!-- Product Details -->
+    <div>
+      <h1 class="heading-lg text-naturebuff-green mb-2">{{ product.title }}</h1>
+      <div class="flex items-center gap-2 mb-4">
+        <div class="flex">
+          {% assign rating_value = product.metafields.reviews.rating.value | default: 4.5 %}
+          {% assign rating_count = product.metafields.reviews.rating_count.value | default: 0 %}
+          {% for i in (1..5) %}
+            {% if i <= rating_value %}
+              {% render 'icon-star-filled', class: 'h-5 w-5 text-naturebuff-orange' %}
+            {% else %}
+              {% render 'icon-star', class: 'h-5 w-5 text-naturebuff-orange' %}
+            {% endif %}
+          {% endfor %}
+        </div>
+        <span class="text-sm text-muted-foreground">({{ rating_count }} reviews)</span>
+      </div>
+      
+      <div class="mb-6">
+        <p class="text-2xl font-bold mb-2">{{ product.price | money }}</p>
+        {% if product.compare_at_price > product.price %}
+          <p class="text-sm text-muted-foreground">
+            <span class="line-through">{{ product.compare_at_price | money }}</span>
+            <span class="text-red-500 ml-2">Save {{ product.compare_at_price | minus: product.price | money }}</span>
+          </p>
+        {% endif %}
+        
+        {% if product.metafields.custom.subscription_available %}
+          <p class="text-sm text-muted-foreground">
+            or subscribe and save 15% ({{ product.price | times: 0.85 | money }} / {{ product.metafields.custom.subscription_frequency }})
+          </p>
+        {% endif %}
+      </div>
+
+      <p class="text-muted-foreground mb-6">
+        {{ product.description | strip_html | truncatewords: 30 }}
+      </p>
+
+      {% form 'product', product %}
+        <input type="hidden" name="id" value="{{ product.selected_or_first_available_variant.id }}">
+        
+        {% for option in product.options_with_values %}
+          <div class="mb-6">
+            <h3 class="font-heading font-bold mb-3">{{ option.name }}</h3>
+            <div class="flex flex-wrap gap-3">
+              {% for value in option.values %}
+                <label class="cursor-pointer">
+                  <input 
+                    type="radio" 
+                    name="options[{{ option.name }}]" 
+                    value="{{ value }}" 
+                    class="sr-only"
+                    {% if option.selected_value == value %}checked{% endif %}
+                  >
+                  <span class="rounded-full px-4 py-2 border-2 inline-block option-selector {% if option.selected_value == value %}border-naturebuff-green bg-naturebuff-green/5{% else %}border-input{% endif %}">
+                    {{ value }}
+                  </span>
+                </label>
+              {% endfor %}
+            </div>
+          </div>
+        {% endfor %}
+
+        <!-- Quantity -->
+        <div class="mb-8">
+          <h3 class="font-heading font-bold mb-3">Quantity</h3>
+          <div class="flex items-center">
+            <button type="button" class="quantity-down rounded-l-md rounded-r-none h-12 w-12 border border-input flex items-center justify-center">
+              {% render 'icon-minus', class: 'h-4 w-4' %}
+            </button>
+            <input type="number" name="quantity" value="1" min="1" class="h-12 w-16 border-y border-input text-center" />
+            <button type="button" class="quantity-up rounded-r-md rounded-l-none h-12 w-12 border border-input flex items-center justify-center">
+              {% render 'icon-plus', class: 'h-4 w-4' %}
+            </button>
+          </div>
+        </div>
+
+        <!-- Purchase Options -->
+        <div class="flex flex-col gap-4 mb-8">
+          <button type="submit" name="add" class="bg-naturebuff-green hover:bg-naturebuff-green/90 text-white px-6 py-3 rounded-md">
+            Add to Cart
+          </button>
+          
+          {% if product.metafields.custom.subscription_available %}
+            <button type="button" class="border border-naturebuff-orange text-naturebuff-orange hover:bg-naturebuff-orange/10 px-6 py-3 rounded-md">
+              Subscribe & Save 15%
+            </button>
+          {% endif %}
+        </div>
+      {% endform %}
+
+      <!-- Key Features -->
+      <div class="space-y-3 mb-8">
+        {% for feature in product.metafields.custom.key_features.value %}
+          <div class="flex items-start gap-2">
+            {% render feature.icon, class: 'h-5 w-5 text-naturebuff-green mt-0.5 flex-shrink-0' %}
+            <p class="text-sm">{{ feature.text }}</p>
+          </div>
+        {% endfor %}
+        
+        <div class="flex items-start gap-2">
+          {% render 'icon-truck', class: 'h-5 w-5 text-naturebuff-green mt-0.5 flex-shrink-0' %}
+          <p class="text-sm">Free shipping on orders over $35</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Product Details Tabs -->
+  <div class="product-tabs mb-16">
+    <div class="border-b">
+      <div class="flex overflow-x-auto">
+        <button class="tab-button active rounded-none border-b-2 border-transparent data-active:border-naturebuff-green py-3 px-4 font-heading font-medium" data-tab="description">
+          Description
+        </button>
+        <button class="tab-button rounded-none border-b-2 border-transparent data-active:border-naturebuff-green py-3 px-4 font-heading font-medium" data-tab="ingredients">
+          Ingredients
+        </button>
+        <button class="tab-button rounded-none border-b-2 border-transparent data-active:border-naturebuff-green py-3 px-4 font-heading font-medium" data-tab="how-to-use">
+          How to Use
+        </button>
+        <button class="tab-button rounded-none border-b-2 border-transparent data-active:border-naturebuff-green py-3 px-4 font-heading font-medium" data-tab="reviews">
+          Reviews
+        </button>
+      </div>
+    </div>
+    
+    <div class="tab-content active pt-6" id="description-content">
+      <div class="grid md:grid-cols-2 gap-8">
+        <div>
+          <h2 class="heading-md text-naturebuff-green mb-4">{{ product.metafields.custom.description_title }}</h2>
+          <div class="text-muted-foreground">
+            {{ product.description }}
+          </div>
+        </div>
+        <div>
+          <h3 class="heading-sm text-naturebuff-green mb-4">Features & Benefits</h3>
+          <ul class="space-y-3">
+            {% for benefit in product.metafields.custom.benefits.value %}
+              <li class="flex items-start gap-2">
+                {% render 'icon-check', class: 'h-5 w-5 text-naturebuff-green mt-0.5 flex-shrink-0' %}
+                <span>{{ benefit }}</span>
+              </li>
+            {% endfor %}
+          </ul>
+        </div>
+      </div>
+    </div>
+    
+    <div class="tab-content hidden pt-6" id="ingredients-content">
+      <div class="max-w-3xl">
+        <h2 class="heading-md text-naturebuff-green mb-4">What's Inside</h2>
+        <p class="text-muted-foreground mb-6">
+          {{ product.metafields.custom.ingredients_intro }}
+        </p>
+        
+        {{ product.metafields.custom.ingredients_content }}
+      </div>
+    </div>
+    
+    <div class="tab-content hidden pt-6" id="how-to-use-content">
+      <div class="max-w-3xl">
+        <h2 class="heading-md text-naturebuff-green mb-4">How to Use {{ product.title }}</h2>
+        <p class="text-muted-foreground mb-6">
+          {{ product.metafields.custom.usage_intro }}
+        </p>
+        
+        {{ product.metafields.custom.usage_content }}
+      </div>
+    </div>
+    
+    <div class="tab-content hidden pt-6" id="reviews-content">
+      <div class="max-w-4xl">
+        <div class="flex flex-col md:flex-row md:items-center justify-between gap-6 mb-8">
+          <div>
+            <h2 class="heading-md text-naturebuff-green mb-2">Customer Reviews</h2>
+            <div class="flex items-center gap-2">
+              <div class="flex">
+                {% assign rating_value = product.metafields.reviews.rating.value | default: 4.5 %}
+                {% for i in (1..5) %}
+                  {% if i <= rating_value %}
+                    {% render 'icon-star-filled', class: 'h-5 w-5 text-naturebuff-orange' %}
+                  {% else %}
+                    {% render 'icon-star', class: 'h-5 w-5 text-naturebuff-orange' %}
+                  {% endif %}
+                {% endfor %}
+              </div>
+              <span class="text-sm">Based on {{ product.metafields.reviews.rating_count.value | default: 0 }} reviews</span>
+            </div>
+          </div>
+          <button class="bg-naturebuff-orange hover:bg-naturebuff-orange/90 text-naturebuff-green px-4 py-2 rounded-md">
+            Write a Review
+          </button>
+        </div>
+        
+        <div class="space-y-6">
+          {% for review in product.metafields.custom.reviews.value %}
+            <div class="border-b pb-6">
+              <div class="flex items-center gap-2 mb-2">
+                <div class="flex">
+                  {% for i in (1..5) %}
+                    {% if i <= review.rating %}
+                      {% render 'icon-star-filled', class: 'h-4 w-4 text-naturebuff-orange' %}
+                    {% else %}
+                      {% render 'icon-star', class: 'h-4 w-4 text-naturebuff-orange' %}
+                    {% endif %}
+                  {% endfor %}
+                </div>
+                <h4 class="font-heading font-semibold">{{ review.title }}</h4>
+              </div>
+              <div class="flex items-center gap-2 text-sm text-muted-foreground mb-3">
+                <span>{{ review.author }}</span>
+                <span>•</span>
+                <span>{{ review.verified_buyer | default: false | capitalize }}</span>
+                <span>•</span>
+                <span>{{ review.date }}</span>
+              </div>
+              <p class="text-muted-foreground mb-2">
+                {{ review.content }}
+              </p>
+            </div>
+          {% endfor %}
+          
+          <button class="w-full border border-input hover:bg-muted/50 px-4 py-2 rounded-md">Load More Reviews</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Related Products -->
+  {% section 'related-products' %}
+</div>
+
+<script>
+  document.addEventListener('DOMContentLoaded', function() {
+    // Tab functionality
+    const tabButtons = document.querySelectorAll('.tab-button');
+    const tabContents = document.querySelectorAll('.tab-content');
+    
+    tabButtons.forEach(button => {
+      button.addEventListener('click', () => {
+        const tabId = button.getAttribute('data-tab');
+        
+        // Remove active class from all buttons and contents
+        tabButtons.forEach(btn => btn.classList.remove('active'));
+        tabContents.forEach(content => content.classList.remove('active'));
+        
+        // Add active class to current button and content
+        button.classList.add('active');
+        document.getElementById(`${tabId}-content`).classList.add('active');
+      });
+    });
+    
+    // Quantity buttons
+    const quantityDown = document.querySelector('.quantity-down');
+    const quantityUp = document.querySelector('.quantity-up');
+    const quantityInput = document.querySelector('input[name="quantity"]');
+    
+    if (quantityDown && quantityUp && quantityInput) {
+      quantityDown.addEventListener('click', () => {
+        const currentValue = parseInt(quantityInput.value);
+        if (currentValue > 1) {
+          quantityInput.value = currentValue - 1;
+        }
+      });
+      
+      quantityUp.addEventListener('click', () => {
+        const currentValue = parseInt(quantityInput.value);
+        quantityInput.value = currentValue + 1;
+      });
+    }
+    
+    // Option selectors
+    const optionSelectors = document.querySelectorAll('.option-selector');
+    
+    optionSelectors.forEach(selector => {
+      selector.addEventListener('click', () => {
+        const input = selector.previousElementSibling;
+        if (input && input.type === 'radio') {
+          input.checked = true;
+          
+          // Update styling
+          const name = input.name;
+          document.querySelectorAll(`input[name="${name}"] + .option-selector`).forEach(el => {
+            el.classList.remove('border-naturebuff-green', 'bg-naturebuff-green/5');
+            el.classList.add('border-input');
+          });
+          
+          selector.classList.remove('border-input');
+          selector.classList.add('border-naturebuff-green', 'bg-naturebuff-green/5');
+          
+          // Trigger change event for variant selection
+          input.dispatchEvent(new Event('change', { bubbles: true }));
+        }
+      });
+    });
+  });
+</script>
+
+<style>
+  .tab-button.active {
+    border-bottom-color: #144D3C;
+  }
+  
+  .tab-content {
+    display: none;
+  }
+  
+  .tab-content.active {
+    display: block;
+  }
+</style>
+
+```liquid file="snippets/icon-star-filled.liquid"
+<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="currentColor" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="{{ class }}">
+  <polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon>
+</svg>
+
