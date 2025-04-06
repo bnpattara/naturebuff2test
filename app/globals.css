@@ -1,0 +1,130 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    --background: 0 0% 100%;
+    --foreground: 160 58% 19%;
+
+    /* Dark Green as primary color: #144D3C */
+    --primary: 160 58% 19%;
+    --primary-foreground: 0 0% 100%;
+
+    /* Orange as accent color: #EFA567 */
+    --accent: 30 80% 67%;
+    --accent-foreground: 160 58% 19%;
+
+    --card: 0 0% 100%;
+    --card-foreground: 160 58% 19%;
+
+    --popover: 0 0% 100%;
+    --popover-foreground: 160 58% 19%;
+
+    --secondary: 160 58% 19%;
+    --secondary-foreground: 0 0% 100%;
+
+    --muted: 160 30% 96%;
+    --muted-foreground: 160 40% 30%;
+
+    --destructive: 0 84.2% 60.2%;
+    --destructive-foreground: 0 0% 100%;
+
+    --border: 160 20% 90%;
+    --input: 160 20% 90%;
+    --ring: 160 58% 19%;
+
+    --radius: 0.5rem;
+
+    /* Header height */
+    --header-height: 5rem;
+    --header-height-mobile: 4.5rem;
+  }
+
+  .dark {
+    --background: 160 58% 8%;
+    --foreground: 0 0% 95%;
+
+    --primary: 160 58% 19%;
+    --primary-foreground: 0 0% 100%;
+
+    --accent: 30 80% 67%;
+    --accent-foreground: 160 58% 19%;
+
+    --card: 160 58% 10%;
+    --card-foreground: 0 0% 95%;
+
+    --popover: 160 58% 10%;
+    --popover-foreground: 0 0% 95%;
+
+    --secondary: 160 40% 15%;
+    --secondary-foreground: 0 0% 100%;
+
+    --muted: 160 40% 15%;
+    --muted-foreground: 160 20% 70%;
+
+    --destructive: 0 62.8% 30.6%;
+    --destructive-foreground: 0 0% 100%;
+
+    --border: 160 40% 15%;
+    --input: 160 40% 15%;
+    --ring: 160 20% 80%;
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+  body {
+    @apply bg-background text-foreground font-sans;
+  }
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
+    @apply font-heading tracking-tight;
+  }
+  h1 {
+    @apply text-3xl md:text-5xl font-bold;
+  }
+  h2 {
+    @apply text-2xl md:text-3xl font-bold;
+  }
+  h3 {
+    @apply text-xl font-bold;
+  }
+  h4 {
+    @apply text-lg font-semibold;
+  }
+}
+
+@layer components {
+  .heading-xl {
+    @apply font-heading text-4xl md:text-5xl lg:text-6xl font-bold tracking-tight;
+  }
+  .heading-lg {
+    @apply font-heading text-3xl md:text-4xl font-bold tracking-tight;
+  }
+  .heading-md {
+    @apply font-heading text-2xl md:text-3xl font-bold tracking-tight;
+  }
+  .heading-sm {
+    @apply font-heading text-xl md:text-2xl font-bold tracking-tight;
+  }
+  .heading-xs {
+    @apply font-heading text-lg md:text-xl font-semibold tracking-tight;
+  }
+
+  .logo-container {
+    @apply bg-white/90 backdrop-blur-sm rounded-lg shadow-sm px-6 py-3;
+  }
+
+  /* Header styles */
+  .site-header {
+    @apply h-[var(--header-height-mobile)] md:h-[var(--header-height)] flex items-center;
+  }
+}
+
